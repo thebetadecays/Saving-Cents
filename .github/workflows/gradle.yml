@@ -22,4 +22,4 @@ jobs:
       with:
         gradle-version: 6.0.1
     - name: Build with Gradle
-      run: gradle build
+      run: /home/runner/gradle-provision-tmpdir/installs/gradle-6.0.1/bin/gradle build
