@@ -1,17 +1,10 @@
-<<<<<<< HEAD:TabbedPane.java
-//import javax.swing.JFrame;
-//import javax.swing.JLabel;
-//import javax.swing.JPanel;
-//import javax.swing.JTabbedPane;
-import javax.swing.*;
-=======
 package com.thebetadecays;
 
+import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
->>>>>>> d43b74d8559a2bf0567601211152203c5d756d54:src/main/java/com/thebetadecays/TabbedPane.java
  
 /**
  * TabbedPane is the main panel that runs the GUI for Saving Cents
@@ -102,16 +95,10 @@ public class TabbedPane extends JFrame {
     public static void main(String[] args) {
          
         TabbedPane tp = new TabbedPane();
-<<<<<<< HEAD:TabbedPane.java
     
-    } // Main
-
-} // TabbedPane
-=======
         tp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tp.pack();  // Sets window large enough for all elements to appear
         tp.setSize(647, 400);   // sets size of window (ratio is golden rectangle)
         tp.setVisible(true);
-    }
-}
->>>>>>> d43b74d8559a2bf0567601211152203c5d756d54:src/main/java/com/thebetadecays/TabbedPane.java
+    } // Main
+} // TabbedPane
