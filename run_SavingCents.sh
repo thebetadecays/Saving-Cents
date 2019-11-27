@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar ./build/libs/Saving-Cents.jar
+java -jar ./build/libs/SavingCents.jar
