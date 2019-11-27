@@ -5,6 +5,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
  
+/**
+ * TabbedPane is the main panel that runs the GUI for Saving Cents
+ * It will have 4 tabs, Dashboard, Expense, Contacts, and Reports
+ * @author Skyler Novak
+ */
 public class TabbedPane extends JFrame {
      
     public TabbedPane() {
@@ -41,13 +46,16 @@ public class TabbedPane extends JFrame {
         jtp.addTab("Expense", jp2);
         jtp.addTab("Contacts", jp3);
         jtp.addTab("Reports", jp4);
-         
+
     }
+
+         
     public static void main(String[] args) {
          
         TabbedPane tp = new TabbedPane();
         tp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tp.pack();  // Sets window large enough for all elements to appear
+        tp.setSize(647, 400);   // sets size of window (ratio is golden rectangle)
         tp.setVisible(true);
-         
     }
 }

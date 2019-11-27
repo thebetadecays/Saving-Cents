@@ -1,2 +1,2 @@
-# Saving-Cents
+# SavingCents
 CS 401 Project
