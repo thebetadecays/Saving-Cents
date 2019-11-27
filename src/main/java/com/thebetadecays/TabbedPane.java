@@ -1,3 +1,5 @@
+package com.thebetadecays;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -56,5 +58,4 @@ public class TabbedPane extends JFrame {
         tp.setSize(647, 400);   // sets size of window (ratio is golden rectangle)
         tp.setVisible(true);
     }
-
 }

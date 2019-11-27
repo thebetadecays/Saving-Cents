@@ -1,6 +1,19 @@
 # Compiled class file
 *.class
 
+# Idea clutter
+
+
+# Idea clutter
+.idea/*
+
+# Gradle clutter
+gradlew
+gradlew.bat
+build/*
+.gradle/*
+gradle/*
+
 # Log file
 *.log
 
