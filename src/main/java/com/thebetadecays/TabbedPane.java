@@ -11,7 +11,7 @@ import javax.swing.JTabbedPane;
  * It will have 4 tabs, Dashboard, Expense, Contacts, and Reports
  * @author Skyler Novak
  */
-public class TabbedPane extends JFrame {
+public class TabbedPane extends JFrame //{
 
     // Panels
     private JTabbedPane jtp = new JTabbedPane();
