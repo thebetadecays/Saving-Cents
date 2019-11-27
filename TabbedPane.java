@@ -45,12 +45,6 @@ public class TabbedPane extends JFrame {
         jtp.addTab("Contacts", jp3);
         jtp.addTab("Reports", jp4);
 
-        // setBounds()
-        // pack()
-        // setSize()
-        // jtp.setSize(1500, 1800);
-        // get the screen size as a java dimension
-
     }
 
          
@@ -58,8 +52,8 @@ public class TabbedPane extends JFrame {
          
         TabbedPane tp = new TabbedPane();
         tp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tp.pack();
-        tp.setSize(647, 400);
+        tp.pack();  // Sets window large enough for all elements to appear
+        tp.setSize(647, 400);   // sets size of window (ratio is golden rectangle)
         tp.setVisible(true);
     }
 
