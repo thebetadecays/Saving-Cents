@@ -1,8 +1,14 @@
+package com.thebetadecays;
+
+import java.io.*;
+import java.util.Scanner;
+import java.util.ArrayList;
+
 /**
 * Instance-free class of static methods for loading and persisting data to files
 * @author Jason Gurtz-Cayla
 */
-private final class DB {
+final class DB {
 /*
 *TODO:
 * - finish saveContacts
@@ -22,14 +28,16 @@ private final class DB {
     public static void saveContacts(ArrayList<Contact> ct, PrintWriter pw) {
         //TODO: generate and write the lines
         // Line format: name\taddress\tphone\temail\tcategory\tsubCategory\n
-        if (cLst.getFirst() != null) {
-            Node cur = cLst.getFirst();
+        /*
+        if (ct.getFirst() != null) {
+            Node cur = ct.getFirst();
             do {
                 pw.print( cur.getName() + '\n' + cur.getNumber() + '\n' );
                 cur = cur.getNext();
             }
             while ( cur != null );
         }
+        */
         pw.close();
     }
 
@@ -43,7 +51,7 @@ private final class DB {
         // Line format: name\taddress\tphone\temail\tcategory\tsubCategory\n
         while ( s.hasNextLine() ) {
             String[] line = s.nextLine().split("\t");
-            ct.add( new Contact(line[0], line[1], line[2], line[3], line[4], line[5]) )
+            ct.add( new Contact(line[0], line[1], line[2], line[3], line[4], line[5]) );
         }
         s.close();
     }
