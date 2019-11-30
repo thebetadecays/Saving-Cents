@@ -18,11 +18,11 @@ public class Money {
     public Money(double amt) {
        BigDecimal bd = new BigDecimal(String.valueOf(amt));
        setDollar(bd.intValue());
-       setCent(bd.subtract( new BigDecimal(bd.intValue()).intValue()) ); 
+       setCent(bd.subtract( new BigDecimal(bd.intValue())).intValue() ); 
     }
 
     public String toString() {
-        return String.format();
+        return String.format("%s.%s", this.getDollar(), this.getCent());
     }
 
     public void setDollar(int d) {
@@ -37,7 +37,7 @@ public class Money {
         return this.dollar;
     }
 
-    public int getDollar() {
+    public int getCent() {
         return this.cent;
     }
 }
