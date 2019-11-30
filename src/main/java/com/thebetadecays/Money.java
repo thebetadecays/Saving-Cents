@@ -33,6 +33,15 @@ public class Money {
     }
 
     /**
+    * Constructor three: Monetary value passed in as String
+    * @author Jason Gurtz-Cayla 
+    * @param amt (required) Monetary value
+    */
+    public Money(String amt) {
+        this( Double.parseDouble(amt) );
+    }
+
+    /**
     * Returns the monetary value as a printable string
     * @author Jason Gurtz-Cayla 
     * @return Monetary value
