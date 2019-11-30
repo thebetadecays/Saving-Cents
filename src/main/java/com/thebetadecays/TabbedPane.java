@@ -1,11 +1,13 @@
 package com.thebetadecays;
 
 import java.awt.*;
+import java.awt.event.ItemEvent;
 import javax.swing.*;
-//import javax.swing.JFrame;
-//import javax.swing.JLabel;
-//import javax.swing.JPanel;
-//import javax.swing.JTabbedPane;
+
+/*  TO DO
+    Add event listeners to buttons, text fields?
+    align/justify components
+ */
  
 /**
  * TabbedPane is the main panel that runs the GUI for Saving Cents
@@ -22,7 +24,6 @@ public class TabbedPane extends JFrame {
     private JPanel jp4 = new JPanel(); // Reports
 
     // Add Layout Managers
-    //setLayout(new BorderLayout());
 
     // Labels
     private JLabel label1 = new JLabel(); // Dashboard Label
@@ -51,12 +52,13 @@ public class TabbedPane extends JFrame {
     private final int WINDOW_WIDTH = 647;
     private final int WINDOW_HEIGHT = 400;
 
-    // Categories / Sub categories string arrays
+    // String Arrays  --  Categories/Sub-categories
     String categories[] = {"Housing", "Transportation", "Food", "Utilities", "Insurance", "Medical & Healthcare",
             "Saving & Investments", "Personal", "Entertainment", "Miscellaneous"};
      
     /**
-     * Constructor
+     * Default Constructor
+     * @author Skyler Novak
      */
     public TabbedPane() {
          
@@ -76,6 +78,7 @@ public class TabbedPane extends JFrame {
     /**
      * Create panel object, populate with components,
      * and add to content pane of JFrame object
+     * @author Skyler Novak
      */
     private void buildPanel() {
 
@@ -104,9 +107,17 @@ public class TabbedPane extends JFrame {
 
     } // buildPanel()
 
+    /**
+     * method to build the expense tab in the TabbedPane frame
+     * populates with panels and components
+     * @author Skyler Novak
+     */
     private void buildExpenseTab() {
+
+        // Set layout manager for expense tab
         jp2.setLayout(new GridLayout(7, 1));
 
+        // Panels to use for Expense Tab
         JPanel expPanel1 = new JPanel();
         JPanel expPanel2 = new JPanel();
         JPanel expPanel3 = new JPanel();
@@ -114,13 +125,17 @@ public class TabbedPane extends JFrame {
         JPanel expPanel5 = new JPanel();
         JPanel expPanel6 = new JPanel();
 
+        // Combo Box for categories & item listener
         expCategories = new JComboBox(categories);
+        expCategories.addItemListener(this::itemStateChanged);
 
+        // Define labels for Expense Tab
         expConName.setText("Contact Name");
         expAmt.setText("Amount");
         expDate.setText("Date");
         expCatLabel.setText("Category");
 
+        // Add components to Panels
         expPanel1.add(expConName);
         expPanel1.add(testTextField1);
         expPanel2.add(expAmt);
@@ -133,17 +148,43 @@ public class TabbedPane extends JFrame {
         expPanel6.add(expEdit);
         expPanel6.add(expDel);
 
+        // Add panels to Expense Tab
         jp2.add(expPanel1);
         jp2.add(expPanel2);
         jp2.add(expPanel3);
         jp2.add(expPanel4);
         jp2.add(expPanel5);
         jp2.add(expPanel6);
+    } // buildExpenseTab()
+
+    /**
+     * function for itemListener implementation
+     * @author Skyler Novak
+     * @param e
+     */
+    public void itemStateChanged(ItemEvent e)
+    {
+        // EXAMPLE CODE ONLY  --  DO NOT USE
+        /*
+
+        // if the state combobox is changed
+        if (e.getSource() == c1) {
+
+            l1.setText(c1.getSelectedItem() + " selected");
+        }
+
+        */
     }
-         
+
+    /**
+     * Main function to run TabbedPane frame
+     * @author Skyler Novak
+     * @param args
+     */
     public static void main(String[] args) {
          
         TabbedPane tp = new TabbedPane();
 
     } // Main
+
 } // TabbedPane
