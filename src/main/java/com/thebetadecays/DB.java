@@ -1,11 +1,8 @@
-//package com.thebetadecays.SavingCents_Model;
+package com.thebetadecays;
 
-import com.thebetadecays.Contact;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.Scanner;
+import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -59,15 +56,27 @@ final class DB {
         s.close();
     }
 
+    /**
+     * Saves expenses from ArrayList<Expense>, writes to file
+     * @param exp ArrayList of Expense objects
+     * @param pw Printwriter object for file writing
+     * @author Skyler Novak
+     */
     public static void saveExpenses(ArrayList<Expense> exp, PrintWriter pw) {
+
+        // Iterator object to traverse ArrayList
         Iterator<Expense> itr_expense = exp.iterator();
 
+        // Traverse ArrayList and print each record to the file
         while(itr_expense.hasNext())
         {
             pw.println( itr_expense.next().toTSV() );
         }
+
+        // close print writer
         pw.close();
-    }
+
+    } // saveExpenses()
 
     /**
      * Loads expenses from expense.txt file into Expense objects
