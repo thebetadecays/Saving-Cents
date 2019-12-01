@@ -1,9 +1,15 @@
-package com.thebetadecays;
+package com.thebetadecays.SavingCents_Model;
 
-import java.io.*;
-import java.util.Scanner;
-import java.util.Iterator;
+import com.thebetadecays.SavingCents.Contact;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 /**
 * Instance-free class of static methods for loading and persisting data to files
@@ -52,6 +58,45 @@ final class DB {
         }
         s.close();
     }
+
+    public static void saveExpenses(ArrayList<Expense> exp, PrintWriter pw) {
+        Iterator<Expense> itr_expense = exp.iterator();
+
+        while(itr_expense.hasNext())
+        {
+            pw.println( itr_expense.next().toTSV() );
+        }
+        pw.close();
+    }
+
+    /**
+     * Loads expenses from expense.txt file into Expense objects
+     * @param e reference to an ArrayList<Expense> object
+     * @param s Scanner object, generally obtained from readFile()
+     * @author Skyler Novak
+     */
+    public static void loadExpenses(ArrayList<Expense> e, Scanner s) {
+        // Will another method call loadExpense(e, readFile("Expense.txt"));    ???
+
+        // Line format: dollar\tcent\tZonedatetime\tcontact\tcategory\tsubCategory\tmemo\n
+        while (s.hasNextLine()) {
+
+            // Get line from file
+            String inputLine = s.nextLine();
+
+            // Create tokenizer, set deliminator to '\t'
+            StringTokenizer st = new StringTokenizer(inputLine, "\t");
+
+            // Parse string, use each token as a parameter for new Expense object constructor
+            e.add(new Expense(st.nextToken(), st.nextToken(), st.nextToken(), st.nextToken(),
+                    st.nextToken(), st.nextToken(), st.nextToken()));
+
+        } // while (s.hasNextLine())
+
+        // close input file
+        s.close();
+
+    } // loadExpenses()
 
     /**
     * Utility function for reading from a txt file, creating file if needed
