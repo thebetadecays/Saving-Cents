@@ -1,11 +1,8 @@
-//package com.thebetadecays.SavingCents_Model;
+package com.thebetadecays;
 
-import com.thebetadecays.Contact;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.Scanner;
+import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -18,7 +15,7 @@ import java.util.StringTokenizer;
 final class DB {
 /*
 *TODO:
-* - write individual save/read methods for Expense, Category, Model
+* - write individual save/read methods for Category, Model
 */
     /**
     * Constructor, private to simulating a static class (no instances)
@@ -27,12 +24,12 @@ final class DB {
     private DB() {}
     /**
     * Saves contacts from ArrayList, overwriting ContactDB.txt
+    * Line format: name\taddress\tphone\temail\tcategory\tsubCategory\n
     * @param ct Reference to a ArrayList<Contact> object
-    * @param pw PrintWriter object, typically gained from overwriteFile(file)
     * @author Jason Gurtz-Cayla
     */
-    public static void saveContacts(ArrayList<Contact> ct, PrintWriter pw) {
-        // Line format: name\taddress\tphone\temail\tcategory\tsubCategory\n
+    public static void saveContacts(ArrayList<Contact> ct) throws java.io.IOException {
+        PrintWriter pw = DB.overwriteFile("ContactDB.txt");
 
         Iterator<Contact> itr_contact = ct.iterator();
 
@@ -45,12 +42,12 @@ final class DB {
 
     /**
     * Loads contacts from ContactDB.txt file into Contact object
+    * Line format: name\taddress\tphone\temail\tcategory\tsubCategory\n
     * @param ct Reference to an ArrayList<Contact> object
-    * @param s Scanner object, generally obtained via readFile()
     * @author Jason Gurtz-Cayla
     */
-    public static void loadContacts(ArrayList<Contact> ct, Scanner s) {
-        // Line format: name\taddress\tphone\temail\tcategory\tsubCategory\n
+    public static void loadContacts(ArrayList<Contact> ct) throws java.io.IOException {
+        Scanner s = DB.readFile("ContacDB.txt");
 
         while ( s.hasNextLine() ) {
             String[] line = s.nextLine().split("\t");
@@ -59,15 +56,27 @@ final class DB {
         s.close();
     }
 
+    /**
+     * Saves expenses from ArrayList<Expense>, writes to file
+     * @param exp ArrayList of Expense objects
+     * @param pw Printwriter object for file writing
+     * @author Skyler Novak
+     */
     public static void saveExpenses(ArrayList<Expense> exp, PrintWriter pw) {
+
+        // Iterator object to traverse ArrayList
         Iterator<Expense> itr_expense = exp.iterator();
 
+        // Traverse ArrayList and print each record to the file
         while(itr_expense.hasNext())
         {
             pw.println( itr_expense.next().toTSV() );
         }
+
+        // close print writer
         pw.close();
-    }
+
+    } // saveExpenses()
 
     /**
      * Loads expenses from expense.txt file into Expense objects
