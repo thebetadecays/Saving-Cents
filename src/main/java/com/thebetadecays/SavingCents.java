@@ -1,4 +1,4 @@
-package com.thebetadecays.SavingCents;
+package com.thebetadecays;
 
 import com.thebetadecays.TabbedPane;
 
