@@ -1,6 +1,6 @@
-package com.thebetadecays.SavingCents_Model;
+//package com.thebetadecays.SavingCents_Model;
 
-import com.thebetadecays.SavingCents.Contact;
+import com.thebetadecays.Contact;
 
 import java.io.File;
 import java.io.FileWriter;
