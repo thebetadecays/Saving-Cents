@@ -33,11 +33,13 @@ public class Model {
 
     }
 
+    /* Actually, will call individual load/save methods in DB class
     private void load() {
     }
 
     private void save() {
     }
+    */
 
     public void setBudgetDate(ZonedDateTime dt) {
     }
@@ -49,6 +51,10 @@ public class Model {
     }
 
     public ZonedDateTime getBudgetDate() {
+        // https://www.baeldung.com/java-8-date-time-intro
+        // https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html
+        // https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html
+        // https://docs.oracle.com/javase/8/docs/api/java/time/ZoneId.html
         return ZonedDateTime.of(LocalDateTime.now(), ZoneId.of("PST"));
     }
 
@@ -76,8 +82,11 @@ public class Model {
     }
 
     // name, category, subCategory, addy, phone, email
-    // probably need to overload allowing creation with just name
     public void addContact(String n, String c, String sc, String a, String p, String e) {
+    }
+
+    public void addContact(String n) {
+        addContact(n, "", "", "", "", "");
     }
 
     public void removeContact(String n) {
