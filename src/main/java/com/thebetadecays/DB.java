@@ -2,6 +2,7 @@ package com.thebetadecays;
 
 import java.io.*;
 import java.util.Scanner;
+import java.util.Iterator;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 final class DB {
 /*
 *TODO:
-* - finish saveContacts
 * - write individual save/read methods for Expense, Category, Model
 */
     /**
@@ -26,18 +26,14 @@ final class DB {
     * @author Jason Gurtz-Cayla
     */
     public static void saveContacts(ArrayList<Contact> ct, PrintWriter pw) {
-        //TODO: generate and write the lines
         // Line format: name\taddress\tphone\temail\tcategory\tsubCategory\n
-        /*
-        if (ct.getFirst() != null) {
-            Node cur = ct.getFirst();
-            do {
-                pw.print( cur.getName() + '\n' + cur.getNumber() + '\n' );
-                cur = cur.getNext();
-            }
-            while ( cur != null );
+
+        Iterator<Contact> itr_contact = ct.iterator();
+
+        while(itr_contact.hasNext())
+        {
+            pw.println( itr_contact.next().toTSV() );
         }
-        */
         pw.close();
     }
 
@@ -49,6 +45,7 @@ final class DB {
     */
     public static void loadContacts(ArrayList<Contact> ct, Scanner s) {
         // Line format: name\taddress\tphone\temail\tcategory\tsubCategory\n
+
         while ( s.hasNextLine() ) {
             String[] line = s.nextLine().split("\t");
             ct.add( new Contact(line[0], line[1], line[2], line[3], line[4], line[5]) );
