@@ -5,9 +5,7 @@
 *.class
 
 # Idea clutter
-
-
-# Idea clutter
+src/main/java/com/com.iml
 .idea/*
 
 # Gradle clutter
