@@ -1,4 +1,4 @@
-package com.thebetadecays;
+package com.thebetadecays.SC_Model;
 
 /**
 * Class which holds a contact
