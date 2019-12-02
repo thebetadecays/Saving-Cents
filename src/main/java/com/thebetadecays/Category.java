@@ -1,4 +1,4 @@
-package com.thebetadecays;
+package com.thebetadecays.SC_Model;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,12 +9,14 @@ public class Category {
     private int percentage;
     private ArrayList<Category> subCategories;
 
-    //********************************************************************************************
-    // WriteCategory opens a file and recursively writes the contents of the category to the category file.
-    // This should ONLY be used for the King Category!!!
-    //********************************************************************************************
+    /**
+    * WriteCategory opens a file and recursively writes the contents of the category to the category file.
+    * This should ONLY be used for the King Category!!!
+     * @author Moses Howard
+     * @exception java.io.IOException
+    **/
     public void writeCategory() throws IOException {
-        FileWriter fileWriter = new FileWriter("C:\\Users\\moses\\Desktop");
+        FileWriter fileWriter = new FileWriter("categories.txt");
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.printf("%s:%d{ ", name, percentage);
         for (Category cat: subCategories){
@@ -24,12 +26,14 @@ public class Category {
         printWriter.close();
     }
 
-    //********************************************************************************************
-    // WriteCategory opens a file and recursively writes the contents of the category to the category file.
-    // This should ONLY be initiated from the root of the King Category
-    //********************************************************************************************
+    /**
+    * WriteCategory opens a file and recursively writes the contents of the category to the category file.
+    * This should ONLY be initiated from the root of the King Category
+     * @author Moses Howard
+     * @exception java.io.IOException
+    **/
     public void writeCategoryHelper() throws IOException {
-        FileWriter fileWriter = new FileWriter("C:\\Users\\moses\\Desktop",true);
+        FileWriter fileWriter = new FileWriter("categories.txt",true);
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.printf("%s:%d{ ", name, percentage);
         for (Category cat: subCategories){
@@ -38,22 +42,26 @@ public class Category {
         printWriter.print("}");
         printWriter.close();
     }
-    //********************************************************************************************
-    // WriteCategory opens a file and recursively writes the contents of the category file to the category.
-    // This should ONLY be initiated from the King Category
-    //********************************************************************************************
+    /**
+    * WriteCategory opens a file and recursively writes the contents of the category file to the category.
+    * This should ONLY be initiated from the King Category
+     * @author Moses Howard
+     * @exception fileNotFoundException
+    **/
     public static void makeCategories()throws FileNotFoundException {
 
         //creating File instance to reference text file in Java
-        File text = new File("C:/temp/test.txt");
+        File text = new File("categories.txt");
         String categoryText = text.toString();
         Category king = new Category();
         king.readCategory(categoryText);
     }
-    //********************************************************************************************
-    // WriteCategory opens a file and recursively writes the contents of the category file to the category.
-    // This should ONLY be initiated from the root of the King Category
-    //********************************************************************************************
+    /**
+    * WriteCategory opens a file and recursively writes the contents of the category file to the category.
+    * This should ONLY be initiated from the root of the King Category
+     * @author Moses Howard
+     * @param txt - a string that contains the information for the category and all subcategories
+    **/
     public void readCategory(String txt){
         String percentageString;
         int pointer = 0;
