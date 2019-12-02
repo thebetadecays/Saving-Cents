@@ -1,5 +1,3 @@
-package com.thebetadecays;
-
 import javax.swing.GroupLayout;
 import javax.swing.JComponent;
 import java.awt.Color;
@@ -29,8 +27,7 @@ public class TextBox extends JFrame {
 
         var k = new JTextArea(); // constructor of TextBox component
         var l = new JScrollPane(k);  // makes text scrollable
-	
-	k.setBackground(Color.yellow);
+        k.setBackground(Color.yellow);
 
         Layout(l);
 

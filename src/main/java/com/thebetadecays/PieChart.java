@@ -1,9 +1,18 @@
+package com.thebetadecays;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+
+/**
+ * Sample Pie Chart  
+ * will show how much of budget is being used
+ * 
+ * @author Saidel Hernandez 
+ */
 
 class Part {
    double value;
@@ -14,37 +23,42 @@ class Part {
       this.color = color;
    }
 }
-class MyComponent extends JComponent {
+class PieComp extends JComponent {
    Part[] slices = { 
-      new Part(5, Color.yellow), new Part(40, Color.white), new Part(25, Color.blue), new Part(30, Color.red) 
+      new Part(5, Color.yellow),
+      new Part(40, Color.blue),
+      new Part(25, Color.pink),
+      new Part(30, Color.red)
    }; 
-   MyComponent() {
+   PieComp() {
    }
-   public void paint(Graphics g) {
-      drawPie((Graphics2D) g, getBounds(), slices);
+   public void paint(Graphics g)
+   {
+      drawPieChart((Graphics2D) g,
+      getBounds(), slices);
    } 
-   void drawPie(Graphics2D g, Rectangle area, Part[] slices) {
+   void drawPieChart(Graphics2D g, Rectangle area, Part[] slices) {
       double total = 0.0D;
       for (int i = 0; i < slices.length; i++) {
          total += slices[i].value;
       } 
-      double curValue = 0.0D;
-      int startAngle = 0;
+      double current = 0.0D;
+      int start = 0;
       for (int i = 0; i < slices.length; i++) {
-         startAngle = (int) (curValue * 360 / total);
+         start = (int) (current * 360 / total);
          int arcAngle = (int) (slices[i].value * 360 / total);
          
          g.setColor(slices[i].color);
-         g.fillArc(area.x, area.y, area.width, area.height, startAngle, arcAngle);
-         curValue += slices[i].value;
+         g.fillArc(area.x, area.y, area.width, area.height, start, arcAngle);
+         current += slices[i].value;
       } 
    }
 }
 public class PieChart {
    public static void main(String[] argv) {
       JFrame frame = new JFrame();
-      frame.getContentPane().add(new MyComponent());
-      frame.setSize(300, 200);
+      frame.getContentPane().add(new PieComp());
+      frame.setSize(647, 400);
       frame.setVisible(true);
    }
 }

@@ -1,5 +1,6 @@
 package com.thebetadecays;
 
+import java.io.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,18 +11,21 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import javax.swing.*;
 
-/*  TO DO
+/*  TODO:
     Add event listeners to buttons, text fields?
     align/justify components
  */
  
 /**
- * TabbedPane is the main panel that runs the GUI for Saving Cents
+ * TabbedPane is the main panel that controls which view is active
  * It will have 4 tabs, Dashboard, Expense, Contacts, and Reports
  * @author Skyler Novak
  */
-public class TabbedPane extends JFrame {
+public class TabbedPane extends JPanel {
 
+    //TODO: get the 4 panels into seperate classes and files
+    //      eg. Dashboard_Pl, Expenses_Pl, ...
+    //      Check SavingCentsGUI for how (minus the JFrame stuff)
     // Panels
     private JTabbedPane jtp = new JTabbedPane();
     private JPanel jp1 = new JPanel(); // Dashboard
@@ -60,9 +64,10 @@ public class TabbedPane extends JFrame {
     private JComboBox expSubCat;
 
     // Window params
-    private final int WINDOW_WIDTH = 647;
-    private final int WINDOW_HEIGHT = 400;
+    //private final int WINDOW_WIDTH = 647;
+    //private final int WINDOW_HEIGHT = 400;
 
+    //TODO: Create Categories_Pl class and if there's time, make this dynamic from the Model
     // String Arrays  --  Categories/Sub-categories
     String categories[] = {"Housing", "Transportation", "Food", "Utilities", "Insurance", "Medical & Healthcare",
             "Saving & Investments", "Personal", "Entertainment", "Miscellaneous"};
@@ -73,6 +78,7 @@ public class TabbedPane extends JFrame {
      */
     public TabbedPane() {
          
+        /* No longer need the JFrame things
         // initialize Pane values
         setTitle("Saving Cents");
         pack(); // Sets window large enough for all elements to appear
@@ -80,8 +86,10 @@ public class TabbedPane extends JFrame {
         setLayout(new BorderLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        */
 
         // Build & populate content panes
+        //TODO: probably just get rid of buildPanel() and do it all here in the constructor
         buildPanel();
 
     } // Constructor
@@ -94,7 +102,9 @@ public class TabbedPane extends JFrame {
     private void buildPanel() {
 
         // add JTabbedPane object to JFrame content pane
-        getContentPane().add(jtp);
+        //getContentPane().add(jtp); // no longer a JFrame, just add it to the top...
+        add(jtp);
+        System.out.println("Added jtp");
 
         // Create labels for each tab/Pane
         label1.setText("You are in area of Tab1 - DASHBOARD");
@@ -123,6 +133,7 @@ public class TabbedPane extends JFrame {
      * populates with panels and components
      * @author Skyler Novak
      */
+     //TODO: refactor into constructor of new panel class Expenses_Pl
     private void buildExpenseTab() {
 
         // Set layout manager for expense tab
@@ -197,6 +208,7 @@ public class TabbedPane extends JFrame {
 
     } // buildExpenseTab()
 
+    //TODO: even handlers to go with the individual panels
     /**
      * function for itemListener implementation
      * @author Skyler Novak
@@ -221,6 +233,7 @@ public class TabbedPane extends JFrame {
      * @author Skyler Novak
      * @param args
      */
+     // no longer needed, this panel is added in top-level SavingCentsGUI
     public static void main(String[] args) {
          
         TabbedPane tp = new TabbedPane();

@@ -1,4 +1,4 @@
-package com.thebetadecays;
+package com.thebetadecays.SC_Model;
 
 import java.util.*;
 
@@ -59,11 +59,11 @@ public class Model {
     }
 
     public String getMonthlyIncome() {
-        return "Never enough!!!";
+        return "1000000.00"; //we're rich!!
     }
 
     public String getPIN() {
-        return "abc123";
+        return "0000";
     }
 
     public void addCategory(String cat) {
