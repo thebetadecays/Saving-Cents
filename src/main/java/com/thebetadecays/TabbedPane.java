@@ -1,5 +1,7 @@
 package com.thebetadecays;
 
+import com.thebetadecays.SC_Model.Model;
+
 import java.io.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -32,6 +34,9 @@ public class TabbedPane extends JPanel {
     private JPanel jp2 = new JPanel(); // Expenses
     private JPanel jp3 = new JPanel(); // Contacts
     private JPanel jp4 = new JPanel(); // Reports
+
+    // Declare Model
+    Model SC_Model = new Model();
 
     // Add Layout Managers
 
@@ -191,16 +196,25 @@ public class TabbedPane extends JPanel {
         expAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                // addExpense(Double amt, ZonedDateTime dt, String contact, String cat, String subCat, String memo) {
 
-                String con = expConTF.getText();
-                String amt = expAmtTF.getText();
+                double amt = Double.parseDouble(expAmtTF.getText());
                 ZonedDateTime dt = ZonedDateTime.now();
+                String con = expConTF.getText();
+                String cat = expCategories.toString();  // Is this correct?
+                String subCat = expSubCat.toString();   // Same
+                String memo = expMemo.getText();
 
+                // addExpense(Double amt, ZonedDateTime dt, String contact, String cat, String subCat, String memo) {
+                SC_Model.addExpense(amt, dt, con, cat, subCat, memo);
 
-
-
+                // Debugging
+                System.out.println("Debugging ExpTab Add button");
+                System.out.println(amt);
+                System.out.println(dt);
                 System.out.println(con);
+                System.out.println(cat);
+                System.out.println(subCat);
+                System.out.println(memo);
 
             } // actionPerformed()
 
