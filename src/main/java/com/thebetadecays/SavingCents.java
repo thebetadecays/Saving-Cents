@@ -1,24 +1,27 @@
 package com.thebetadecays;
 
-import com.thebetadecays.TabbedPane;
-
 import javax.swing.*;
 
 /**
- * Class object that will start and run the Saving Cents application
- * @author skyler novak
+ * Class object that is the entry point of the Saving Cents application
+ * @author skyler novak, Jason Gurtz-Cayla
  */
 public class SavingCents {
 
     /**
-     * Main function to run TabbedPane frame
-     * @author Skyler Novak
+     * Main function starts the login pin
+     * @author Skyler Novak, Saidel Hernandez
      * @param args
      */
     public static void main(String[] args) {
-
-        JFrame scApp = new TabbedPane();
-
-    } // Main
-
-} // SavingCents
+		try {
+            Login frame=new Login();
+            frame.setSize(300,100);
+            frame.setVisible(true);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+        catch(Exception j) {
+            JOptionPane.showMessageDialog(null, j.getMessage());
+        }
+    }
+}

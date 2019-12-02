@@ -1,47 +1,37 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.LayoutManager;
+package com.thebetadecays;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
+import java.awt.*;
+import javax.swing.*;
 
 /**
- * Saving Cents GUI 
- * has welcome banner 
- * @author Saidel Hernandez 
- * 
+ * Delegate class of SavingCents representing the View and Controller of classic MVC pattern 
+ * @author Saidel Hernandez, Jason Gurtz-Cayla
  */
+public class SavingCentsGUI extends JFrame {
+    private Banner bannerPanel;
+    private TabbedPane tpPanel;
 
-public class SavingCentsGUI {
-   public static void main(String[] args) {
-      window();
-   }
+    /**
+    * @author Saidel Hernandez, Jason Gurtz-Cayla
+    */
+    public SavingCentsGUI() {
+        // start Saidel
+        JFrame frame = new JFrame("Welcome to Saving Cents");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-   private static void window() {    
-      JFrame frame = new JFrame("Welcome to Saving Cents");
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //start Jason
+        setLayout(new GridLayout(2, 1));
 
-      Banner(frame);
-      frame.setSize(647, 400);      
-      frame.setLocationRelativeTo(null);  
-      frame.setVisible(true);
-   }
-
-   private static void Banner (JFrame frame){
-      //Create a border
-      Border b = BorderFactory.createLineBorder(Color.green); // set border color to green
-      JPanel panel = new JPanel();
-      LayoutManager l = new FlowLayout();  
-      panel.setLayout(l);       
-      JPanel panel2 = new JPanel();
-      String spaces = "                   ";
-      panel2.add(new JLabel(spaces + "Welcome to Saving Cents" + spaces));  
-      panel2.setBorder(b);
-      panel.add(panel2);
-      frame.getContentPane().add(panel, BorderLayout.CENTER);    
-   }
+        bannerPanel = new Banner();
+        tpPanel = new TabbedPane();
+        add(bannerPanel);
+        add(tpPanel);
+        //pack();
+        //end Jason
+        // start Saidel
+        frame.setSize(647, 400);      
+        frame.setLocationRelativeTo(null);  
+        frame.setVisible(true);
+        // End Saidel
+    }
 }
