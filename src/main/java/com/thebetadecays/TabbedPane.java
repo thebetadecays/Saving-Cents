@@ -1,7 +1,13 @@
 package com.thebetadecays;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import javax.swing.*;
 
 /*  TO DO
@@ -34,11 +40,15 @@ public class TabbedPane extends JFrame {
     private JLabel expAmt = new JLabel();
     private JLabel expDate = new JLabel();
     private JLabel expCatLabel = new JLabel();
+    private JLabel expSubCatLabel = new JLabel();
+    private JLabel expMemo = new JLabel();
 
     // Text Fields
-    private JTextField testTextField1 = new JTextField(25);
-    private JTextField testTextField2 = new JTextField(25);
-    private JTextField testTextField3 = new JTextField(25);
+    private JTextField expConTF = new JTextField(25);
+    private JTextField expAmtTF = new JTextField(25);
+
+    // Text Area
+    private JTextArea expMemoTF = new JTextArea(5, 50);
 
     // Buttons
     private JButton expAdd = new JButton("Add");
@@ -47,6 +57,7 @@ public class TabbedPane extends JFrame {
 
     // Combo Boxes
     private JComboBox expCategories;
+    private JComboBox expSubCat;
 
     // Window params
     private final int WINDOW_WIDTH = 647;
@@ -124,29 +135,37 @@ public class TabbedPane extends JFrame {
         JPanel expPanel4 = new JPanel();
         JPanel expPanel5 = new JPanel();
         JPanel expPanel6 = new JPanel();
+        JPanel expPanel7 = new JPanel();
 
         // Combo Box for categories & item listener
         expCategories = new JComboBox(categories);
+        expSubCat = new JComboBox(categories);
         expCategories.addItemListener(this::itemStateChanged);
+        // need item listener for sub-cat
 
         // Define labels for Expense Tab
         expConName.setText("Contact Name");
         expAmt.setText("Amount");
-        expDate.setText("Date");
+        expDate.setText("The Date Timestamp will be recorded");
         expCatLabel.setText("Category");
+        expSubCatLabel.setText("Sub-Category");
+        expMemo.setText("Memo");
 
         // Add components to Panels
         expPanel1.add(expConName);
-        expPanel1.add(testTextField1);
+        expPanel1.add(expConTF);
+        expPanel1.add(expCatLabel);
+        expPanel1.add(expCategories);
         expPanel2.add(expAmt);
-        expPanel2.add(testTextField2);
+        expPanel2.add(expAmtTF);
+        expPanel2.add(expSubCatLabel);
+        expPanel2.add(expSubCat);
         expPanel3.add(expDate);
-        expPanel3.add(testTextField3);
-        expPanel4.add(expCatLabel);
-        expPanel4.add(expCategories);
-        expPanel6.add(expAdd);
-        expPanel6.add(expEdit);
-        expPanel6.add(expDel);
+        expPanel4.add(expMemo);
+        expPanel5.add(expMemoTF);
+        expPanel7.add(expAdd);
+        expPanel7.add(expEdit);
+        expPanel7.add(expDel);
 
         // Add panels to Expense Tab
         jp2.add(expPanel1);
@@ -155,6 +174,27 @@ public class TabbedPane extends JFrame {
         jp2.add(expPanel4);
         jp2.add(expPanel5);
         jp2.add(expPanel6);
+        jp2.add(expPanel7);
+
+        // Action Listeners
+        expAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // addExpense(Double amt, ZonedDateTime dt, String contact, String cat, String subCat, String memo) {
+
+                String con = expConTF.getText();
+                String amt = expAmtTF.getText();
+                ZonedDateTime dt = ZonedDateTime.now();
+
+
+
+
+                System.out.println(con);
+
+            } // actionPerformed()
+
+        }); // expAdd.addActionListener
+
     } // buildExpenseTab()
 
     /**
