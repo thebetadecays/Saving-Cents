@@ -1,3 +1,7 @@
+package com.thebetadecays;
+
+import com.thebetadecays.SC_Model.Model;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -21,6 +25,7 @@ class Login extends JFrame implements ActionListener
     final JTextField  text,text1;
  
 
+    //TODO: make for just a PIN and use getPIN() from the model
     Login()
     {
         label = new JLabel();
@@ -42,8 +47,12 @@ class Login extends JFrame implements ActionListener
         add(panel);
         Submit.addActionListener(this);
         setTitle("Saving Cents");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
+    /**
+    * @author Saidel Hernandez, Jason Gurtz-Cayla
+    */
     public void actionPerformed(ActionEvent e)
     {
         String value = text.getText();
@@ -51,31 +60,16 @@ class Login extends JFrame implements ActionListener
 
         if (value.equals("cs") && value1.equals("0000"))
         {
-            JOptionPane.showMessageDialog(this,"correct");
+            //start Jason
+            SavingCentsGUI scg = new SavingCentsGUI();
+            this.dispose();
+            // end Jason
         }
         else
         {
             System.out.println("enter the valid username and password");
             JOptionPane.showMessageDialog(this,"Incorrect login or password",
                 "Error",JOptionPane.ERROR_MESSAGE);
-        }
-    }
-}
-
-class LoginPin
-{
-    public static void main(String arg[])
-    {
-        try
-        {
-            Login frame=new Login();
-            frame.setSize(300,100);
-            frame.setVisible(true);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }
-        catch(Exception j)
-        {
-            JOptionPane.showMessageDialog(null, j.getMessage());
         }
     }
 }
