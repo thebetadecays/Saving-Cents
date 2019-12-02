@@ -1,4 +1,4 @@
-package com.thebetadecays;
+package com.thebetadecays.SC_Model;
 
 import java.io.*;
 import java.util.Scanner;
