@@ -15,6 +15,7 @@ public class Contact {
     /**
     * Contructor one: use 2nd constructor to set name, everything else blank
     * @author Jason Gurtz-Cayla
+    * @param n Contact name
     */
     public Contact(String n) {
         this(n, "", "", "", "", "");
@@ -23,6 +24,12 @@ public class Contact {
     /**
     * Contructor two: set all fields explicitly
     * @author Jason Gurtz-Cayla
+    * @param n Contact name
+    * @param a Contact address
+    * @param p Contact phone
+    * @param e Contact email
+    * @param c Contact category
+    * @param sc Contact sub-category
     */
     public Contact(String n, String a, String p, String e, String c, String sc) {
         this.name = n;

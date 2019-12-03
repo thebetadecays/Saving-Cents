@@ -25,8 +25,9 @@ final class DB {
     /**
     * Saves contacts from ArrayList, overwriting ContactDB.txt
     * Line format: name\taddress\tphone\temail\tcategory\tsubCategory\n
-    * @param ct Reference to a ArrayList<Contact> object
     * @author Jason Gurtz-Cayla
+    * @param ct Reference to a ArrayList&lt;&gt; object
+    * @throws java.io.IOException exception thrown if PrintWriter encounters failure
     */
     public static void saveContacts(ArrayList<Contact> ct) throws java.io.IOException {
         PrintWriter pw = DB.overwriteFile("ContactDB.txt");
@@ -43,8 +44,9 @@ final class DB {
     /**
     * Loads contacts from ContactDB.txt file into Contact object
     * Line format: name\taddress\tphone\temail\tcategory\tsubCategory\n
-    * @param ct Reference to an ArrayList<Contact> object
     * @author Jason Gurtz-Cayla
+    * @param ct Reference to an ArrayList&lt;&gt; object
+    * @throws java.io.IOException exception thrown if Scanner encounters failure
     */
     public static void loadContacts(ArrayList<Contact> ct) throws java.io.IOException {
         Scanner s = DB.readFile("ContacDB.txt");
@@ -57,7 +59,7 @@ final class DB {
     }
 
     /**
-     * Saves expenses from ArrayList<Expense>, writes to file
+     * Saves expenses from ArrayList&lt;&gt;, writes to file
      * @param exp ArrayList of Expense objects
      * @param pw Printwriter object for file writing
      * @author Skyler Novak
@@ -80,7 +82,7 @@ final class DB {
 
     /**
      * Loads expenses from expense.txt file into Expense objects
-     * @param e reference to an ArrayList<Expense> object
+     * @param e reference to an ArrayList&lt;&gt; object
      * @param s Scanner object, generally obtained from readFile()
      * @author Skyler Novak
      */
