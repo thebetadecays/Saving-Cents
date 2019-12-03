@@ -1,8 +1,8 @@
 
 package com.thebetadecays;
 
-import com.thebetadecays.SC_Model.Model.Category;
-import org.junit.Test;
+import com.thebetadecays.SC_Model.Category;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,16 +17,16 @@ class CategoryTest {
     @Test
     void writeCategory() throws java.io.IOException {
         try{
-            com.thebetadecays.SC_Model.Model.Category mainCategory = new com.thebetadecays.SC_Model.Model.Category();
-            com.thebetadecays.SC_Model.Model.Category subCategory1 = new com.thebetadecays.SC_Model.Model.Category();
-            com.thebetadecays.SC_Model.Model.Category subCategory2 = new com.thebetadecays.SC_Model.Model.Category();
+            Category mainCategory = new Category();
+            Category subCategory1 = new Category();
+            Category subCategory2 = new Category();
             mainCategory.setName("Food");
             mainCategory.setPercentage(100);
             subCategory1.setName("Fast Food");
             subCategory1.setPercentage(30);
             subCategory2.setName("Groceries");
             subCategory2.setPercentage(70);
-            ArrayList<com.thebetadecays.SC_Model.Model.Category> list = new ArrayList<Category>();
+            ArrayList<Category> list = new ArrayList<Category>();
             list.add(subCategory1);
             list.add(subCategory2);
             mainCategory.setSubCategories(list);
@@ -42,21 +42,21 @@ class CategoryTest {
      **/
     @Test
     void makeCategories() throws java.io.IOException{
-        com.thebetadecays.SC_Model.Model.Category mainCategory = new com.thebetadecays.SC_Model.Model.Category();
-        com.thebetadecays.SC_Model.Model.Category subCategory1 = new com.thebetadecays.SC_Model.Model.Category();
-        com.thebetadecays.SC_Model.Model.Category subCategory2 = new com.thebetadecays.SC_Model.Model.Category();
+        Category mainCategory = new Category();
+        Category subCategory1 = new Category();
+        Category subCategory2 = new Category();
         mainCategory.setName("Food");
         mainCategory.setPercentage(100);
         subCategory1.setName("Fast Food");
         subCategory1.setPercentage(30);
         subCategory2.setName("Groceries");
         subCategory2.setPercentage(70);
-        ArrayList<com.thebetadecays.SC_Model.Model.Category> list = new ArrayList<Category>();
+        ArrayList<Category> list = new ArrayList<Category>();
         list.add(subCategory1);
         list.add(subCategory2);
         mainCategory.setSubCategories(list);
         mainCategory.writeCategory();
-        com.thebetadecays.SC_Model.Model.Category newMain = new com.thebetadecays.SC_Model.Model.Category();
+        Category newMain = new Category();
         newMain.makeCategories();
         assertEquals(newMain.getName(),"Food");
     }
@@ -66,7 +66,7 @@ class CategoryTest {
      **/
     @org.junit.jupiter.api.Test
     void addSubCategory() {
-        com.thebetadecays.SC_Model.Model.Category mainCategory = new com.thebetadecays.SC_Model.Model.Category();
+        Category mainCategory = new Category();
         mainCategory.setName("Food");
         mainCategory.setPercentage(100);
         mainCategory.addSubCategory("Fast Food",100);

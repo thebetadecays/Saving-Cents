@@ -34,7 +34,7 @@ public class Category {
      * WriteCategory opens a file and recursively writes the contents of the category to the category file.
      * This should ONLY be initiated by writeCategory!!!
      * @author Moses Howard
-     * @throws  java.io.IOException
+     * @throws java.io.IOException
      **/
     private void writeCategoryHelper() throws IOException {
         FileWriter fileWriter = new FileWriter("categories.txt",true);
