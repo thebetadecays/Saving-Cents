@@ -192,7 +192,7 @@ java.util.Scanner&nbsp;s)</code></th>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#saveExpenses(java.util.ArrayList,java.io.PrintWriter)">saveExpenses</a></span>&#8203;(java.util.ArrayList&lt;<a href="Expense.html" title="class in com.thebetadecays.SC_Model">Expense</a>&gt;&nbsp;exp,
 java.io.PrintWriter&nbsp;pw)</code></th>
 <td class="colLast">
-<div class="block">Saves expenses from ArrayList<Expense>, writes to file</div>
+<div class="block">Saves expenses from ArrayList&lt;&gt;, writes to file</div>
 </td>
 </tr>
 </tbody>
@@ -243,9 +243,9 @@ java.io.PrintWriter&nbsp;pw)</code></th>
  Line format: name\taddress\tphone\temail\tcategory\tsubCategory\n</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>ct</code> - Reference to a ArrayList<Contact> object</dd>
+<dd><code>ct</code> - Reference to a ArrayList&lt;&gt; object</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - exception thrown if PrintWriter encounters failure</dd>
 </dl>
 </section>
 </li>
@@ -258,9 +258,9 @@ java.io.PrintWriter&nbsp;pw)</code></th>
  Line format: name\taddress\tphone\temail\tcategory\tsubCategory\n</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>ct</code> - Reference to an ArrayList<Contact> object</dd>
+<dd><code>ct</code> - Reference to an ArrayList&lt;&gt; object</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - exception thrown if Scanner encounters failure</dd>
 </dl>
 </section>
 </li>
@@ -269,7 +269,7 @@ java.io.PrintWriter&nbsp;pw)</code></th>
 <h3><a id="saveExpenses(java.util.ArrayList,java.io.PrintWriter)">saveExpenses</a></h3>
 <div class="memberSignature"><span class="modifiers">public static</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">saveExpenses</span>&#8203;(<span class="arguments">java.util.ArrayList&lt;<a href="Expense.html" title="class in com.thebetadecays.SC_Model">Expense</a>&gt;&nbsp;exp,
 java.io.PrintWriter&nbsp;pw)</span></div>
-<div class="block">Saves expenses from ArrayList<Expense>, writes to file</div>
+<div class="block">Saves expenses from ArrayList&lt;&gt;, writes to file</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>exp</code> - ArrayList of Expense objects</dd>
@@ -285,7 +285,7 @@ java.util.Scanner&nbsp;s)</span></div>
 <div class="block">Loads expenses from expense.txt file into Expense objects</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>e</code> - reference to an ArrayList<Expense> object</dd>
+<dd><code>e</code> - reference to an ArrayList&lt;&gt; object</dd>
 <dd><code>s</code> - Scanner object, generally obtained from readFile()</dd>
 </dl>
 </section>
