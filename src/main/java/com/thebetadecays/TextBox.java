@@ -1,3 +1,4 @@
+package com.thebetadecays;
 import javax.swing.GroupLayout;
 import javax.swing.JComponent;
 import java.awt.Color;
