@@ -65,6 +65,19 @@ public class Category {
         king.makeCategoryHelper(categoryText);
     }
     /**
+    * Mock method to add a new sub-category
+    * @author Jason Gurtz-Cayla
+    * @param name sub-category name
+    * @param pct sub-category budget percentage
+    * @return new sub-category
+    */
+    public static Category addSubCategory(String name, int pct) {
+        return new Category();
+    }
+
+    /**
+     * WriteCategory opens a file and recursively writes the contents of the category file to the category.
+     * This should ONLY be initiated from the root of the King Category
      * makeCategoryHelper uses a string and recursively parses the contents of the string to the category and all
      * subsequent subcategories.
      * This should ONLY be initiated from makeCategories!!!

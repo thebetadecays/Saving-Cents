@@ -61,10 +61,11 @@ final class DB {
     /**
      * Saves expenses from ArrayList&lt;&gt;, writes to file
      * @param exp ArrayList of Expense objects
-     * @param pw Printwriter object for file writing
+     * @throws java.io.IOException exception thrown if PrintWriter encounters failure
      * @author Skyler Novak
      */
-    public static void saveExpenses(ArrayList<Expense> exp, PrintWriter pw) {
+    public static void saveExpenses(ArrayList<Expense> exp) throws java.io.IOException {
+        PrintWriter pw = DB.overwriteFile("ExpenseDB.txt");
 
         // Iterator object to traverse ArrayList
         Iterator<Expense> itr_expense = exp.iterator();
@@ -83,11 +84,11 @@ final class DB {
     /**
      * Loads expenses from expense.txt file into Expense objects
      * @param e reference to an ArrayList&lt;&gt; object
-     * @param s Scanner object, generally obtained from readFile()
+     * @throws java.io.IOException exception thrown if Scanner encounters failure
      * @author Skyler Novak
      */
-    public static void loadExpenses(ArrayList<Expense> e, Scanner s) {
-        // Will another method call loadExpense(e, readFile("Expense.txt"));    ???
+    public static void loadExpenses(ArrayList<Expense> e) throws java.io.IOException {
+        Scanner s = DB.readFile("ContacDB.txt");
 
         // Line format: dollar\tcent\tZonedatetime\tcontact\tcategory\tsubCategory\tmemo\n
         while (s.hasNextLine()) {
