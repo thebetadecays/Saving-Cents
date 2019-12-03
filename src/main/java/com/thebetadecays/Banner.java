@@ -14,22 +14,35 @@ import javax.swing.border.Border;
 /**
 * @author Saidel Hernandez
 */
-public class Banner extends JPanel {
+class Banner extends JPanel {
+    private JLabel bannerTxt;
 
     /**
     * @author Saidel Hernandez
     */
     public Banner () {
-        //Create a border
-        Border b = BorderFactory.createLineBorder(Color.green); // set border color to green
-        JPanel panel = new JPanel();
-        LayoutManager l = new FlowLayout();
-        panel.setLayout(l);
-        JPanel panel2 = new JPanel();
         String spaces = "                   ";
-        panel2.add(new JLabel(spaces + "Welcome to Saving Cents" + spaces));
-        panel2.setBorder(b);
-        panel.add(panel2);
+        bannerTxt = new JLabel(spaces + "Welcome to Saving Cents" + spaces);
+
+        //Create a border
+        //Border b = BorderFactory.createLineBorder(Color.green); // set border color to green
+        //JPanel panel = new JPanel();
+        //LayoutManager l = new FlowLayout();
+        //JPanel panel = new JPanel();
+        //panel.setLayout(l);
+        add(bannerTxt);
+        //panel.setBorder(b);
+        //add(panel);
         //frame.getContentPane().add(panel, BorderLayout.CENTER);
+        /*
+            class WelcomePanel extends JPanel {
+            private JLabel welcomeText;
+
+            public WelcomePanel() {
+                welcomeText = new JLabel("Welcome to Joe's Automotive Shop!");
+                add(welcomeText);
+            }
+        }
+        */
     }
 }
