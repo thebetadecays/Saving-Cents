@@ -12,30 +12,37 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**
-* @author Saidel Hernandez
+ * JPanel component that creates the Saving Cents banner at the top of the Frame
+ * @author Saidel Hernandez, Skyler Novak
 */
 class Banner extends JPanel {
+    // Saidel H.
     private JLabel bannerTxt;
+
+    // Skyler N.
     private JLabel bannerLine1;
     private JLabel bannerLine2;
 
     /**
-    * @author Saidel Hernandez
+     * Default Constructor
+     * @author Saidel Hernandez, Skyler Novak
     */
     public Banner () {
 
+        // Saidel H.
         String spaces = "     "; // 19 spaces
-        String line = spaces;
         bannerTxt = new JLabel(spaces + "Welcome to Saving Cents" + spaces);
+        // Skyler N.
         bannerLine1 = new JLabel(spaces);
         bannerLine2 = new JLabel(spaces);
 
+        // Saidel H.
         Border b = BorderFactory.createLineBorder(Color.green, 9); // set border color to green
 
-        add(bannerLine1);
-        add(bannerTxt);
-        add(bannerLine2);
-        setBorder(b);
+        add(bannerLine1);   // Skyler N.
+        add(bannerTxt);     // Saidel H.
+        add(bannerLine2);   // Skyler N.
+        setBorder(b);       // Saidel H.
 
     }
 }

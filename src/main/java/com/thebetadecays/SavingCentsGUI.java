@@ -14,21 +14,20 @@ public class SavingCentsGUI extends JFrame {
     private TabbedPane tpPanel;
 
     /**
-    * @author Saidel Hernandez, Jason Gurtz-Cayla
+    * @author Saidel Hernandez, Jason Gurtz-Cayla, Skyler N.
     */
     public SavingCentsGUI(Model SC_Model) {
         //start Jason
         setTitle("Welcome to Saving Cents");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //setLayout(new GridLayout(2, 1));
-        this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
-        //setLayout(new GridBagLayout());
+        // Set layout manager for Frame
+        this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS)); // Skyler N.
 
         bannerPanel = new Banner();
-        bannerPanel.setLayout(new BoxLayout(bannerPanel, BoxLayout.Y_AXIS));
+        bannerPanel.setLayout(new BoxLayout(bannerPanel, BoxLayout.Y_AXIS)); // Skyler N.
         tpPanel = new TabbedPane(SC_Model);
-        tpPanel.setLayout(new BoxLayout(tpPanel, BoxLayout.Y_AXIS));
+        tpPanel.setLayout(new BoxLayout(tpPanel, BoxLayout.Y_AXIS));    // Skyler N.
         add(bannerPanel);
         add(tpPanel);
         pack();
