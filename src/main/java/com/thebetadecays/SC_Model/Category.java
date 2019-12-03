@@ -1,4 +1,4 @@
-package java.com.thebetadecays.SC_Model;
+package com.thebetadecays.SC_Model;
 
 import java.io.*;
 import java.util.ArrayList;

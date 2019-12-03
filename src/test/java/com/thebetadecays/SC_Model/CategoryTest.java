@@ -1,5 +1,5 @@
 
-package java.com.thebetadecays;
+package com.thebetadecays;
 
 import com.thebetadecays.SC_Model.Model.Category;
 import org.junit.Test;
