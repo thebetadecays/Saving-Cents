@@ -148,28 +148,25 @@ public class TabbedPane extends JPanel {
 
         // Action Listeners
         expAdd.addActionListener(new ActionListener() {
+            /**
+             * On button click 'Add', get all values user entered and pass it to the Model,
+             * so it may create a new expense for the DB
+             * @param actionEvent event when button 'Add' is clicked
+             * @author Skyler Novak
+             */
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
+                // Get all fields from expense tab that the user entered.
                 double amt = Double.parseDouble(expAmtTF.getText());
                 ZonedDateTime dt = ZonedDateTime.now();
                 String con = expConTF.getText();
-                String cat = expCategories.toString();  // Is this correct?
-                String subCat = expSubCat.toString();   // Same
+                String cat = expCategories.toString();
+                String subCat = expSubCat.toString();
                 String memo = expMemoTF.getText();
 
                 // addExpense(Double amt, ZonedDateTime dt, String contact, String cat, String subCat, String memo) {
                 SC_Model.addExpense(amt, dt, con, cat, subCat, memo);
-
-
-                // Debugging
-                System.out.println("Debugging ExpTab Add button");
-                System.out.println(amt);
-                System.out.println(dt);
-                System.out.println(con);
-                System.out.println(cat);
-                System.out.println(subCat);
-                System.out.println(memo);
 
             } // actionPerformed()
 
