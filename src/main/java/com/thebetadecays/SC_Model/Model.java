@@ -139,6 +139,19 @@ public class Model {
         this.addContact(n, "", "", "", "", "");
     }
 
+    /*
+    * Get all fields from expense tab that the user entered.
+    * @author Jason Gurtz-Cayla
+    * @param amt Amount of expense
+    * @param dt Date and time of expense, with time zone
+    * @param con contact paid, the payee
+    * @param cat Category of expense
+    * @param subCat Sub-category of expense
+    * @param memo Memo field for free-text entry
+    */
+    public void addExpense(Double amt, ZonedDateTime dt, String con, String cat, String subCat, String memo) {
+    }
+
     // name, address, phone, email, category, subCategory
     /**
     * Method to find a contact with a name
