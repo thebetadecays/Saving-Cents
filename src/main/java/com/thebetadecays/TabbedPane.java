@@ -1,8 +1,16 @@
 package com.thebetadecays;
 
+import com.thebetadecays.SC_Model.Model;
+
 import java.io.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import javax.swing.*;
 
 /*  TODO:
@@ -27,6 +35,9 @@ public class TabbedPane extends JPanel {
     private JPanel jp3 = new JPanel(); // Contacts
     private JPanel jp4 = new JPanel(); // Reports
 
+    // Declare Model
+    //Model SC_Model = new Model();
+
     // Add Layout Managers
 
     // Labels
@@ -38,11 +49,15 @@ public class TabbedPane extends JPanel {
     private JLabel expAmt = new JLabel();
     private JLabel expDate = new JLabel();
     private JLabel expCatLabel = new JLabel();
+    private JLabel expSubCatLabel = new JLabel();
+    private JLabel expMemo = new JLabel();
 
     // Text Fields
-    private JTextField testTextField1 = new JTextField(25);
-    private JTextField testTextField2 = new JTextField(25);
-    private JTextField testTextField3 = new JTextField(25);
+    private JTextField expConTF = new JTextField(25);
+    private JTextField expAmtTF = new JTextField(25);
+
+    // Text Area
+    private JTextArea expMemoTF = new JTextArea(5, 50);
 
     // Buttons
     private JButton expAdd = new JButton("Add");
@@ -51,6 +66,7 @@ public class TabbedPane extends JPanel {
 
     // Combo Boxes
     private JComboBox expCategories;
+    private JComboBox expSubCat;
 
     // Window params
     //private final int WINDOW_WIDTH = 647;
@@ -65,7 +81,7 @@ public class TabbedPane extends JPanel {
      * Default Constructor
      * @author Skyler Novak
      */
-    public TabbedPane() {
+    public TabbedPane(Model SC_Model) {
          
         /* No longer need the JFrame things
         // initialize Pane values
@@ -79,7 +95,32 @@ public class TabbedPane extends JPanel {
 
         // Build & populate content panes
         //TODO: probably just get rid of buildPanel() and do it all here in the constructor
-        buildPanel();
+        //buildPanel();
+
+        // add JTabbedPane object to JFrame content pane
+        //getContentPane().add(jtp); // no longer a JFrame, just add it to the top...
+        add(jtp);
+        System.out.println("Added jtp");
+
+        // Create labels for each tab/Pane
+        label1.setText("You are in area of Tab1 - DASHBOARD");
+        label2.setText("You are in area of Tab2 - EXPENSES");
+        label3.setText("You are in area of Tab3 - CONTACTS");
+        label4.setText("You are in area of Tab4 - REPORTS");
+
+        // Add labels to the correct panel -- Remove as panel is worked on
+        jp1.add(label1);
+        jp3.add(label3);
+        jp4.add(label4);
+
+        // add components to Expense Tab
+        buildExpenseTab(SC_Model);
+
+        // Add panes to tabs
+        jtp.addTab("Dashboard", jp1);
+        jtp.addTab("Expense", jp2);
+        jtp.addTab("Contacts", jp3);
+        jtp.addTab("Reports", jp4);
 
     } // Constructor
 
@@ -88,7 +129,7 @@ public class TabbedPane extends JPanel {
      * and add to content pane of JFrame object
      * @author Skyler Novak
      */
-    private void buildPanel() {
+    /*private void buildPanel() {
 
         // add JTabbedPane object to JFrame content pane
         //getContentPane().add(jtp); // no longer a JFrame, just add it to the top...
@@ -117,13 +158,15 @@ public class TabbedPane extends JPanel {
 
     } // buildPanel()
 
+     */
+
     /**
      * method to build the expense tab in the TabbedPane frame
      * populates with panels and components
      * @author Skyler Novak
      */
      //TODO: refactor into constructor of new panel class Expenses_Pl
-    private void buildExpenseTab() {
+    private void buildExpenseTab(Model SC_Model) {
 
         // Set layout manager for expense tab
         jp2.setLayout(new GridLayout(7, 1));
@@ -135,29 +178,37 @@ public class TabbedPane extends JPanel {
         JPanel expPanel4 = new JPanel();
         JPanel expPanel5 = new JPanel();
         JPanel expPanel6 = new JPanel();
+        JPanel expPanel7 = new JPanel();
 
         // Combo Box for categories & item listener
         expCategories = new JComboBox(categories);
+        expSubCat = new JComboBox(categories);
         expCategories.addItemListener(this::itemStateChanged);
+        // need item listener for sub-cat
 
         // Define labels for Expense Tab
         expConName.setText("Contact Name");
         expAmt.setText("Amount");
-        expDate.setText("Date");
+        expDate.setText("The Date Timestamp will be recorded");
         expCatLabel.setText("Category");
+        expSubCatLabel.setText("Sub-Category");
+        expMemo.setText("Memo");
 
         // Add components to Panels
         expPanel1.add(expConName);
-        expPanel1.add(testTextField1);
+        expPanel1.add(expConTF);
+        expPanel1.add(expCatLabel);
+        expPanel1.add(expCategories);
         expPanel2.add(expAmt);
-        expPanel2.add(testTextField2);
+        expPanel2.add(expAmtTF);
+        expPanel2.add(expSubCatLabel);
+        expPanel2.add(expSubCat);
         expPanel3.add(expDate);
-        expPanel3.add(testTextField3);
-        expPanel4.add(expCatLabel);
-        expPanel4.add(expCategories);
-        expPanel6.add(expAdd);
-        expPanel6.add(expEdit);
-        expPanel6.add(expDel);
+        expPanel4.add(expMemo);
+        expPanel5.add(expMemoTF);
+        expPanel7.add(expAdd);
+        expPanel7.add(expEdit);
+        expPanel7.add(expDel);
 
         // Add panels to Expense Tab
         jp2.add(expPanel1);
@@ -166,6 +217,37 @@ public class TabbedPane extends JPanel {
         jp2.add(expPanel4);
         jp2.add(expPanel5);
         jp2.add(expPanel6);
+        jp2.add(expPanel7);
+
+        // Action Listeners
+        expAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+                double amt = Double.parseDouble(expAmtTF.getText());
+                ZonedDateTime dt = ZonedDateTime.now();
+                String con = expConTF.getText();
+                String cat = expCategories.toString();  // Is this correct?
+                String subCat = expSubCat.toString();   // Same
+                String memo = expMemoTF.getText();
+
+                // addExpense(Double amt, ZonedDateTime dt, String contact, String cat, String subCat, String memo) {
+                SC_Model.addExpense(amt, dt, con, cat, subCat, memo);
+
+
+                // Debugging
+                System.out.println("Debugging ExpTab Add button");
+                System.out.println(amt);
+                System.out.println(dt);
+                System.out.println(con);
+                System.out.println(cat);
+                System.out.println(subCat);
+                System.out.println(memo);
+
+            } // actionPerformed()
+
+        }); // expAdd.addActionListener
+
     } // buildExpenseTab()
 
     //TODO: even handlers to go with the individual panels
