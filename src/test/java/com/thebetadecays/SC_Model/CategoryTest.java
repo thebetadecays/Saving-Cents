@@ -2,7 +2,7 @@
 package com.thebetadecays;
 
 import com.thebetadecays.SC_Model.Category;
-import static org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
