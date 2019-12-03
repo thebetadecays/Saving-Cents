@@ -36,7 +36,7 @@ public class TabbedPane extends JPanel {
     private JPanel jp4 = new JPanel(); // Reports
 
     // Declare Model
-    Model SC_Model = new Model();
+    //Model SC_Model = new Model();
 
     // Add Layout Managers
 
@@ -81,7 +81,7 @@ public class TabbedPane extends JPanel {
      * Default Constructor
      * @author Skyler Novak
      */
-    public TabbedPane() {
+    public TabbedPane(Model SC_Model) {
          
         /* No longer need the JFrame things
         // initialize Pane values
@@ -95,7 +95,32 @@ public class TabbedPane extends JPanel {
 
         // Build & populate content panes
         //TODO: probably just get rid of buildPanel() and do it all here in the constructor
-        buildPanel();
+        //buildPanel();
+
+        // add JTabbedPane object to JFrame content pane
+        //getContentPane().add(jtp); // no longer a JFrame, just add it to the top...
+        add(jtp);
+        System.out.println("Added jtp");
+
+        // Create labels for each tab/Pane
+        label1.setText("You are in area of Tab1 - DASHBOARD");
+        label2.setText("You are in area of Tab2 - EXPENSES");
+        label3.setText("You are in area of Tab3 - CONTACTS");
+        label4.setText("You are in area of Tab4 - REPORTS");
+
+        // Add labels to the correct panel -- Remove as panel is worked on
+        jp1.add(label1);
+        jp3.add(label3);
+        jp4.add(label4);
+
+        // add components to Expense Tab
+        buildExpenseTab(SC_Model);
+
+        // Add panes to tabs
+        jtp.addTab("Dashboard", jp1);
+        jtp.addTab("Expense", jp2);
+        jtp.addTab("Contacts", jp3);
+        jtp.addTab("Reports", jp4);
 
     } // Constructor
 
@@ -104,7 +129,7 @@ public class TabbedPane extends JPanel {
      * and add to content pane of JFrame object
      * @author Skyler Novak
      */
-    private void buildPanel() {
+    /*private void buildPanel() {
 
         // add JTabbedPane object to JFrame content pane
         //getContentPane().add(jtp); // no longer a JFrame, just add it to the top...
@@ -133,13 +158,15 @@ public class TabbedPane extends JPanel {
 
     } // buildPanel()
 
+     */
+
     /**
      * method to build the expense tab in the TabbedPane frame
      * populates with panels and components
      * @author Skyler Novak
      */
      //TODO: refactor into constructor of new panel class Expenses_Pl
-    private void buildExpenseTab() {
+    private void buildExpenseTab(Model SC_Model) {
 
         // Set layout manager for expense tab
         jp2.setLayout(new GridLayout(7, 1));
@@ -202,10 +229,11 @@ public class TabbedPane extends JPanel {
                 String con = expConTF.getText();
                 String cat = expCategories.toString();  // Is this correct?
                 String subCat = expSubCat.toString();   // Same
-                String memo = expMemo.getText();
+                String memo = expMemoTF.getText();
 
                 // addExpense(Double amt, ZonedDateTime dt, String contact, String cat, String subCat, String memo) {
                 SC_Model.addExpense(amt, dt, con, cat, subCat, memo);
+
 
                 // Debugging
                 System.out.println("Debugging ExpTab Add button");
