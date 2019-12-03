@@ -23,11 +23,14 @@ class Login extends JFrame implements ActionListener
     JPanel panel;
     JLabel label,label1;
     final JTextField  text,text1;
- 
+    private Model SC_Model;
+
 
     //TODO: make for just a PIN and use getPIN() from the model
     Login()
     {
+        SC_Model = new Model();
+
         label = new JLabel();
         label.setText("Name:");
         text = new JTextField(20);
@@ -61,7 +64,7 @@ class Login extends JFrame implements ActionListener
         if (value.equals("cs") && value1.equals("0000"))
         {
             //start Jason
-            SavingCentsGUI scg = new SavingCentsGUI();
+            SavingCentsGUI scg = new SavingCentsGUI(SC_Model);
             this.dispose();
             // end Jason
         }
