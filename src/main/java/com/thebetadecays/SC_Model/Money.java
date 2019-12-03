@@ -27,9 +27,9 @@ public class Money {
     * @param amt (required) Monetary value
     */
     public Money(double amt) {
-       BigDecimal bd = new BigDecimal(String.valueOf(amt));
-       setDollar(bd.intValue());
-       setCent(bd.subtract( new BigDecimal(bd.intValue())).intValue() ); 
+        BigDecimal bd = new BigDecimal(String.valueOf(amt));
+        setDollar(bd.intValue());
+        setCent(bd.subtract( new BigDecimal(bd.intValue())).intValue() ); 
     }
 
     /**
@@ -48,6 +48,17 @@ public class Money {
     */
     public String toString() {
         return String.format("%s.%s", this.getDollar(), this.getCent());
+    }
+
+    /**
+    * Setter for dollar amount
+    * @author Jason Gurtz-Cayla 
+    * @param amt (required) Value amount
+    */
+    public void setValue(double amt) {
+        BigDecimal bd = new BigDecimal(String.valueOf(amt));
+        setDollar(bd.intValue());
+        setCent(bd.subtract( new BigDecimal(bd.intValue())).intValue() ); 
     }
 
     /**

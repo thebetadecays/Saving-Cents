@@ -16,85 +16,144 @@ public class Model {
     ZonedDateTime budgetDate;
     Money monthlyIncome;
     String pin;
-    Category category;
+    Category king;
     ArrayList<Contact> addressBook;
     ArrayList<Expense> expenses;
 
-    public Model() {
-        /* need to instantiate:
-        *
-        * - The base "king" category object
-        * 
-        * - Contacts (address book)
-        *
-        * - Expense record
-        *
-        */
 
-    }
-
-    /* Actually, will call individual load/save methods in DB class
-    private void load() {
-    }
-
-    private void save() {
-    }
+    /**
+    * Default constructor
+    * @author Jason Gurtz-Cayla
     */
+    public Model() {
+        monthlyIncome = new Money(1000000.00);
+        pin = "0000";
+    }
 
+    /**
+    * Method which loads all the data from the persistent storage
+    * @author Jason Gurtz-Cayla
+    */
+    private void load() throws java.io.IOException {
+        king = new Category();
+        king.makeCategories();
+        DB.loadContacts(addressBook);
+        DB.loadExpenses(expenses);
+    }
+
+    /**
+    * Method which saves all the data to persistent storage
+    * @author Jason Gurtz-Cayla
+    */
+    private void save() throws java.io.IOException {
+        king.writeCategory();
+        DB.saveContacts(addressBook);
+        DB.saveExpenses(expenses);
+    }
+
+    /**
+    * Setter for the budget date
+    * @author Jason Gurtz-Cayls
+    * @param dt the budget date
+    */
     public void setBudgetDate(ZonedDateTime dt) {
+        this.budgetDate = ZonedDateTime.now();
     }
 
+    /**
+    * Setter for monthly income
+    * @author Jason Gurtz-Cayls
+    * @param income the user-set monthly income
+    */
     public void setMonthlyIncome(double income) {
+        this.monthlyIncome.setValue(income);
     }
 
+    /**
+    * Setter for the pin
+    * @author Jason Gurtz-Cayls
+    * @param pin the user-set pin code
+    */
     public void setPIN(String pin) {
+        this.pin = pin;
     }
 
+    /**
+    * Getter for the budget date
+    * @author Jason Gurtz-Cayla
+    * @return Date when budget period starts
+    */
     public ZonedDateTime getBudgetDate() {
-        // https://www.baeldung.com/java-8-date-time-intro
-        // https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html
-        // https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html
-        // https://docs.oracle.com/javase/8/docs/api/java/time/ZoneId.html
-        return ZonedDateTime.of(LocalDateTime.now(), ZoneId.of("PST"));
+        return this.budgetDate;
     }
 
+    /**
+    * Getter for the monthly income
+    * @author Jason Gurtz-Cayla
+    * @return monthly income
+    */
     public String getMonthlyIncome() {
-        return "1000000.00"; //we're rich!!
+        return this.monthlyIncome.toString(); //we're rich!!
     }
 
+    /**
+    * Getter for the users pin
+    * @author Jason Gurtz-Cayla
+    * @return the user pin
+    */
     public String getPIN() {
-        return "0000";
+        return this.pin;
     }
 
-    public void addCategory(String cat) {
+    /**
+    * Setter for monthly income
+    * @author Jason Gurtz-Cayls
+    * @param cat the category name
+    * @param pct the budget percentage
+    */
+    public void addCategory(String cat, int pct) {
+        king.addSubCategory(cat, pct);
     }
 
-    public void editCategory(String oldName, String name) {
+    // name, address, phone, email, category, subCategory
+    /**
+    * Method to add a new contact, setting all parameters
+    * @author Jason Gurtz-Cayls
+    * @param n The contact name
+    * @param a The contact street address
+    * @param p The contact phone
+    * @param e The contact email
+    * @param c The contact category
+    * @param sc The contact sub-category
+    */
+    public void addContact(String n, String a, String p, String e, String c, String sc) {
+        this.addressBook.add(new Contact(n, a, p, e, c, sc));
     }
 
-    public void removeCategory(String name) {
-    }
-
-    public void addSubCategory(String c, String sc) {
-    }
-
-    public void removeSubCategory(String c, String sc) {
-    }
-
-    // name, category, subCategory, addy, phone, email
-    public void addContact(String n, String c, String sc, String a, String p, String e) {
-    }
-
+    /**
+    * Method to add a new contact with just a name
+    * @author Jason Gurtz-Cayls
+    * @param n The contact name
+    */
     public void addContact(String n) {
-        addContact(n, "", "", "", "", "");
+        this.addContact(n, "", "", "", "", "");
     }
 
-    public void removeContact(String n) {
-    }
+    // name, address, phone, email, category, subCategory
+    /**
+    * Method to find a contact with a name
+    * @author Jason Gurtz-Cayls
+    * @param n The contact name
+    * @return a found Contact opbject
+    * @exception Exception generic exception with message indicating contact not found
+    */
+    public Contact findContact(String n) throws Exception {
 
-    public void addExpense(Double amt, ZonedDateTime dt, String contact, String cat, String subCat, String memo) {
-    }
-
-    public void removeExpense(String amt, ZonedDateTime dt) {
+        if (n.equals("Starbucks")) {
+            return new Contact("Starbucks", "123 Anystreet, Anytown, CA 94085", "900-555-1212", "coffee@startbucks.com", "Food", "Coffee");
+        }
+        else {
+            throw new Exception("Contact not found!");
+        }
     }
 }
