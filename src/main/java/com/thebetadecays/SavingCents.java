@@ -11,7 +11,7 @@ public class SavingCents {
     /**
      * Main function starts the login pin
      * @author Skyler Novak, Saidel Hernandez
-     * @param args
+     * @param args CLI arguments
      */
     public static void main(String[] args) {
 		try {

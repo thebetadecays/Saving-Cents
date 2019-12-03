@@ -13,7 +13,7 @@ public class Category {
      * WriteCategory opens a file and recursively writes the contents of the category to the category file.
      * This should ONLY be used for the King Category!!!
      * @author Moses Howard
-     * @exception java.io.IOException
+     * @exception java.io.IOException Exception thrown when FileWrite or PrintWrite encounters an error
      **/
     public void writeCategory() throws IOException {
         FileWriter fileWriter = new FileWriter("categories.txt");
@@ -30,7 +30,7 @@ public class Category {
      * WriteCategory opens a file and recursively writes the contents of the category to the category file.
      * This should ONLY be initiated from the root of the King Category
      * @author Moses Howard
-     * @exception java.io.IOException
+     * @exception java.io.IOException  Exception thrown when FileWrite or PrintWrite encounters an error
      **/
     public void writeCategoryHelper() throws IOException {
         FileWriter fileWriter = new FileWriter("categories.txt",true);
@@ -46,7 +46,7 @@ public class Category {
      * WriteCategory opens a file and recursively writes the contents of the category file to the category.
      * This should ONLY be initiated from the King Category
      * @author Moses Howard
-     * @exception fileNotFoundException
+     * @exception FileNotFoundException Exception when file cannot be opened
      **/
     public static void makeCategories()throws FileNotFoundException {
 

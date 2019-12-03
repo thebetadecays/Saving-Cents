@@ -15,23 +15,22 @@ public class SavingCentsGUI extends JFrame {
     * @author Saidel Hernandez, Jason Gurtz-Cayla
     */
     public SavingCentsGUI() {
-        // start Saidel
-        JFrame frame = new JFrame("Welcome to Saving Cents");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         //start Jason
-        setLayout(new GridLayout(2, 1));
+        setTitle("Welcome to Saving Cents");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        setLayout(new GridLayout(3, 1));
 
         bannerPanel = new Banner();
         tpPanel = new TabbedPane();
         add(bannerPanel);
         add(tpPanel);
-        //pack();
+        pack();
         //end Jason
         // start Saidel
-        frame.setSize(647, 400);      
-        frame.setLocationRelativeTo(null);  
-        frame.setVisible(true);
+        setSize(647, 400);      
+        setLocationRelativeTo(null);  
+        setVisible(true);
         // End Saidel
     }
 }

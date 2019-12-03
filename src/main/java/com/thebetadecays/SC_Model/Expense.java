@@ -173,12 +173,11 @@ public class Expense {
     }
 
     /**
-     *
-     * @return
+     * 
+     * @return Formatted string in formatted to write to ExpenseDB.txt
      */
     public String toTSV() {
-
-        // String format: dollar\tcent\tZonedatetime\tcontact\tcategory\tsubCategory\tmemo\n
+        // String format: dollar\tcent\tZonedatetime\tcontact\tcategory\tsubCategory\tmemo
         return String.format("%s\t%s\t%s\t%s\t%s\t%s",
                 this.getAmount().toString(),
                 this.getDateTime().toString(),
