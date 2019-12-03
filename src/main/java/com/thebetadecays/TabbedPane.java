@@ -172,7 +172,7 @@ public class TabbedPane extends JPanel {
     /**
      * function for itemListener implementation
      * @author Skyler Novak
-     * @param e
+     * @param e event object
      */
     public void itemStateChanged(ItemEvent e)
     {
@@ -191,13 +191,15 @@ public class TabbedPane extends JPanel {
     /**
      * Main function to run TabbedPane frame
      * @author Skyler Novak
-     * @param args
+     * @param args CLI arguments
      */
      // no longer needed, this panel is added in top-level SavingCentsGUI
+    /*
     public static void main(String[] args) {
          
         TabbedPane tp = new TabbedPane();
 
     } // Main
+    */
 
 } // TabbedPane
