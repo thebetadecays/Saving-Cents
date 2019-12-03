@@ -1,4 +1,4 @@
-package com.thebetadecays.SC_Model;
+package java.com.thebetadecays.SC_Model;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,58 +11,67 @@ public class Category {
 
     /**
      * WriteCategory opens a file and recursively writes the contents of the category to the category file.
-     * This should ONLY be used for the King Category!!!
+     * The difference between writeCategory and writeCategory helper is that the helper only appends to file.
+     * This should ONLY be used by the King Category!!!
      * @author Moses Howard
-     * @exception java.io.IOException Exception thrown when FileWrite or PrintWrite encounters an error
+     * @exception java.io.IOException
      **/
     public void writeCategory() throws IOException {
         FileWriter fileWriter = new FileWriter("categories.txt");
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.printf("%s:%d{ ", name, percentage);
+        printWriter.close();
         for (Category cat: subCategories){
             cat.writeCategoryHelper();
         }
+        FileWriter fW = new FileWriter("categories.txt",true);
+        PrintWriter pW = new PrintWriter(fileWriter);
         printWriter.print("}");
         printWriter.close();
     }
 
     /**
      * WriteCategory opens a file and recursively writes the contents of the category to the category file.
-     * This should ONLY be initiated from the root of the King Category
+     * This should ONLY be initiated by writeCategory!!!
      * @author Moses Howard
-     * @exception java.io.IOException  Exception thrown when FileWrite or PrintWrite encounters an error
+     * @throws  java.io.IOException
      **/
-    public void writeCategoryHelper() throws IOException {
+    private void writeCategoryHelper() throws IOException {
         FileWriter fileWriter = new FileWriter("categories.txt",true);
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.printf("%s:%d{ ", name, percentage);
+        printWriter.close();
         for (Category cat: subCategories){
             cat.writeCategoryHelper();
         }
+        FileWriter fW = new FileWriter("categories.txt",true);
+        PrintWriter pW = new PrintWriter(fileWriter);
         printWriter.print("}");
         printWriter.close();
     }
     /**
-     * WriteCategory opens a file and recursively writes the contents of the category file to the category.
-     * This should ONLY be initiated from the King Category
+     * makeCategories opens a file and  reads the contents of the file into a single string.
+     * The string contains all information for all categories and will be passed to makeCategoryHelper.
+     * This should ONLY be initiated from the King Category!!!
      * @author Moses Howard
-     * @exception FileNotFoundException Exception when file cannot be opened
+     * @throws FileNotFoundException
      **/
-    public static void makeCategories()throws FileNotFoundException {
+    public static void makeCategories() throws FileNotFoundException {
 
         //creating File instance to reference text file in Java
         File text = new File("categories.txt");
         String categoryText = text.toString();
         Category king = new Category();
-        king.readCategory(categoryText);
+        king.makeCategoryHelper(categoryText);
     }
     /**
-     * WriteCategory opens a file and recursively writes the contents of the category file to the category.
-     * This should ONLY be initiated from the root of the King Category
+     * makeCategoryHelper uses a string and recursively parses the contents of the string to the category and all
+     * subsequent subcategories.
+     * This should ONLY be initiated from makeCategories!!!
      * @author Moses Howard
      * @param txt - a string that contains the information for the category and all subcategories
      **/
-    public void readCategory(String txt){
+    private void makeCategoryHelper(String txt){
         String percentageString;
         int pointer = 0;
         int x = 0;
@@ -93,13 +102,26 @@ public class Category {
                         String subCategoryString = txt.substring(pointer, x+1);
                         pointer = x+1;
                         Category cat = new Category();
-                        cat.readCategory(subCategoryString);
+                        cat.makeCategoryHelper(subCategoryString);
                         subCategories.add(cat);
                     }
                 }
             }
             x+=1;
         }
+    }
+
+    /**
+     * addSubCategory makes it simple to add a new subcategory to an existing category.
+     * @author Moses Howard
+     * @param name - a string that will be the name of the new subCategory
+     * @param percentage - an int that will be the  of the new subCategory
+     **/
+    public void addSubCategory(String name,int percentage){
+        Category cat = new Category();
+        cat.setName(name);
+        cat.setPercentage(percentage);
+        this.getSubCategories().add(cat);
     }
 
     public String getName() {
@@ -126,3 +148,5 @@ public class Category {
         this.subCategories = subCategories;
     }
 }
+
+
